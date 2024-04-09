@@ -30,6 +30,9 @@
     <ClInclude Include="vector2_particle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="euler_method.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="vector3_particle.cpp">
@@ -39,6 +42,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="vector2_particle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="euler_method.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

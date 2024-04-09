@@ -1,42 +1,23 @@
 #include <iostream>
-#include "vector2_particle.h"
-using namespace cyclone;
-
+#include "euler_method.h"
 using namespace std;
 
+float func(float t, float y) {
+	return y;
+}
+
 int main() {
-	Vector2 gravity = Vector2(0, -9.80665);
-	Vector2 positionVector = Vector2(0, 50); // y_0 = 50
-	Vector2 velocityVector = Vector2(0, 10); // v_0 = 10
-	Vector2 accelerationVector = gravity;
-
-	real damping = 0.99f;
-	real inverseMass = 1.0 / 1.0; // m = 1.0
-
-	Vector2Particle particle = Vector2Particle();
-	particle.position = positionVector;
-	particle.velocity = velocityVector;
-	particle.acceleration = accelerationVector;
-	particle.damping = damping;
-	particle.inverseMass = inverseMass;
-
-	cout << "Initial position: " << "(" <<
-		particle.position.x << ", " << 
-		particle.position.y << ")" << endl;
-
-	cout << "Initial velocity: " << "(" <<
-		particle.velocity.x << ", " << 
-		particle.velocity.y << ")" << endl;
-
-	cout << "Initial acceleration: " << "(" <<
-		particle.acceleration.x << ", " << 
-		particle.acceleration.y << ")" << endl;
-
-	cout << "Initial damping: " <<
-		particle.damping << endl;
-
-	cout << "Initial inverse mass: " << 
-		particle.inverseMass << endl;
+	float initial_t = 0;
+	float initial_y = 1;
+	float step_size = 0.01;
+	float epochs = 512;
+	EulerMethod euler = EulerMethod(initial_t, initial_y, step_size);
+	float result = euler.solve(epochs, func);
+	
+	cout << euler.t0 << endl;
+	cout << euler.y0 << endl;
+	cout << euler.h << endl;
+	cout << result << endl;
 
 	return 0;
 }

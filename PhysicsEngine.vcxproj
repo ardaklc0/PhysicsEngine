@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="euler_method.h" />
     <ClInclude Include="vector2.h" />
     <ClInclude Include="vector2_particle.h" />
     <ClInclude Include="vector3.h" />
@@ -134,6 +135,7 @@
     <ClInclude Include="precision.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="euler_method.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="vector2_particle.cpp" />
     <ClCompile Include="vector3_particle.cpp" />
