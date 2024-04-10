@@ -33,6 +33,12 @@
     <ClInclude Include="euler_method.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="runge_kutta_4th.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="runge_kutta_fehlberg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="vector3_particle.cpp">
@@ -45,6 +51,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="euler_method.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="runge_kutta_4th.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="runge_kutta_fehlberg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
