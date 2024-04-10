@@ -6,23 +6,23 @@ namespace cyclone
     {
     public:
         // Holds the value along the x axis.
-        real x;
+        float x;
 
         // Holds the value along the y axis.
-        real y;
+        float y;
 
         // Holds the value along the z axis.
-        real z;
+        float z;
     private:
         // Padding to ensure 4 word alignment.
-        real pad;
+        float pad;
 
     public:
         // The default constructor creates a zero vector.
         Vector3() : x(0), y(0), z(0) {}
 
         // The explicit constructor creates a vector with the given components.
-        Vector3(const real x, const real y, const real z) :
+        Vector3(const float x, const float y, const float z) :
             x(x), y(y), z(z) {}
 
         // Inverts this vector and returns a reference to it.
@@ -34,19 +34,19 @@ namespace cyclone
         }
 
         // Gets the magnitude of this vector.
-        real magnitude() const
+        float magnitude() const
         {
             return real_sqrt(x * x + y * y + z * z);
         }
 
         // Gets the squared magnitude of this vector.
-        real squareMagnitude() const
+        float squareMagnitude() const
         {
             return x * x + y * y + z * z;
         }
 
         // Overload of the addition-assign to scale a vector.
-        void operator*=(const real scalar)
+        void operator*=(const float scalar)
         {
             x *= scalar;
             y *= scalar;
@@ -54,7 +54,7 @@ namespace cyclone
         }
 
         // Overload of the multiply operator to scale a vector.
-        Vector3 operator*(const real& scalar) const
+        Vector3 operator*(const float& scalar) const
         {
             return Vector3(x * scalar, y * scalar, z * scalar);
         }
@@ -87,9 +87,15 @@ namespace cyclone
             return Vector3(x - vector.x, y - vector.y, z - vector.z);
         }
 
+        float operator[](int i) const
+        {
+        	if (i == 0) return x;
+			if (i == 1) return y;
+			return z;
+        }
 
         // Adds the given vector to this, scaled by the given amount.
-        void addScaledVector(const Vector3& vector, real scale)
+        void addScaledVector(const Vector3& vector, float scale)
         {
             x += vector.x * scale;
             y += vector.y * scale;
@@ -110,19 +116,19 @@ namespace cyclone
         }
 
 
-        real scalarProduct(const Vector3& vector) const
+        float scalarProduct(const Vector3& vector) const
         {
             return x * vector.x + y * vector.y + z * vector.z;
         }
 
-        real operator*(const Vector3& vector) const {
+        float operator*(const Vector3& vector) const {
             return x * vector.x + y * vector.y + z * vector.z;
         }
 
-        real angleBetweenVectorsInRadians(const Vector3& vector) const
+        float angleBetweenVectorsInRadians(const Vector3& vector) const
         {
-            real dotProduct = *this * vector;
-            real magnitudeProduct = (*this).magnitude() * vector.magnitude();
+            float dotProduct = *this * vector;
+            float magnitudeProduct = (*this).magnitude() * vector.magnitude();
             if (magnitudeProduct == 0) {
                 return 0;
             }
@@ -131,7 +137,7 @@ namespace cyclone
             }
         }
 
-        real angleBetweenVectorsInDegrees(const Vector3& vector) const
+        float angleBetweenVectorsInDegrees(const Vector3& vector) const
         {
             return angleBetweenVectorsInRadians(vector) * 180 / 3.14159268f;
         }
@@ -162,7 +168,7 @@ namespace cyclone
         // We decided to use the operator overload *= to scale the vector.
         void normalize()
         {
-            real l = magnitude();
+            float l = magnitude();
             if (l > 0)
             {
                 (*this) *= 1 / l;

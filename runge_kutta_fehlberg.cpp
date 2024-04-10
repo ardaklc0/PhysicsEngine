@@ -16,7 +16,9 @@ float RungeKuttaFehlberg::solve(int n, float(*func)(float, float)) const
 		float z6 = h * func(t + h / 2, y - 8 * z1 / 27 + 2 * z2 - 3544 * z3 / 2565 + 1859 * z4 / 4104 - 11 * z5 / 40);
 		y = y + 25 * z1 / 216 + 1408 * z3 / 2565 + 2197 * z4 / 4104 - z5 / 5;
 		t = t + h;
-		cout << "(t, y)" << " = " << "(" << t << ", " << y << ")" << endl;
+
+		if (i % 100 == 0)
+			cout << "(t, y)" << " = " << "(" << t << ", " << y << ")" << endl;
 	}
 	return y;
 }

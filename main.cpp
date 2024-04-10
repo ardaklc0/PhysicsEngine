@@ -2,17 +2,43 @@
 #include "euler_method.h"
 #include "runge_kutta_4th.h"
 #include "runge_kutta_fehlberg.h"
+#include "second_order_euler_method.h"
+#include "third_order_euler_method.h"
+#include <cmath>
+using namespace cyclone;
 using namespace std;
 
-float func(float t, float y) {
-	return y;
+float func(float t, float y, float y_prime) {
+	return -32;
 }
 
 int main() {
 	float initial_t = 0;
-	float initial_y = 1;
-	float step_size = 0.01;
-	float epochs = 2048;
+	float initial_y = 48;
+	float initial_y_prime = 0;
+	float step_size = 0.001;
+	float epochs = 2499;
+
+	SecondOrderEulerMethod second_order_euler = SecondOrderEulerMethod(initial_t, initial_y, initial_y_prime, step_size);
+	Vector2 resultSecondOrderEuler = second_order_euler.solve(epochs, func);
+
+	return 0;
+}
+
+/*	
+	float initial_t = 0;
+	float initial_y = 48;
+	float initial_y_prime = 0;
+	float step_size = 0.001;
+	float epochs = 1999;
+	
+	SecondOrderEulerMethod second_order_euler = SecondOrderEulerMethod(initial_t, initial_y, initial_y_prime, step_size);
+	cyclone::Vector2 resultSecondOrderEuler = second_order_euler.solve(epochs, func);
+
+	float initial_t = 0;
+	float initial_y = 48;
+	float step_size = 0.001;
+	float epochs = 1999;
 
 	EulerMethod euler = EulerMethod(initial_t, initial_y, step_size);
 	float resultEuler = euler.solve(epochs, func);
@@ -34,6 +60,4 @@ int main() {
 	cout << runge_kutta_fehlberg.y0 << endl;
 	cout << runge_kutta_fehlberg.h << endl;
 	cout << resultRKF << endl;
-
-	return 0;
-}
+*/

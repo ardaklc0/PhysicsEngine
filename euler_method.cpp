@@ -8,9 +8,10 @@ float EulerMethod::solve(int n, float(*func)(float, float)) const
 	float y = y0;
 	for (int i = 0; i < n; i++)
 	{
-		y = y + h * func(t, y);
+		y = y + h * func(t, y);	
 		t = t + h;
-		cout << "(t, y)" << " = " << "(" << t << ", " << y << ")" << endl;
+		if (i % 100 == 0)
+			cout << "(t, y)" << " = " << "(" << t << ", " << y << ")" << endl;
 	}
 	return y;
 }

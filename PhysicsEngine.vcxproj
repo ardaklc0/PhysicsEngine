@@ -128,8 +128,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="euler_method.h" />
+    <ClInclude Include="second_order_euler_method.h" />
     <ClInclude Include="runge_kutta_4th.h" />
     <ClInclude Include="runge_kutta_fehlberg.h" />
+    <ClInclude Include="third_order_euler_method.h" />
     <ClInclude Include="vector2.h" />
     <ClInclude Include="vector2_particle.h" />
     <ClInclude Include="vector3.h" />
@@ -138,9 +140,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="euler_method.cpp" />
+    <ClCompile Include="second_order_euler_method.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="runge_kutta_4th.cpp" />
     <ClCompile Include="runge_kutta_fehlberg.cpp" />
+    <ClCompile Include="third_order_euler_method.cpp" />
     <ClCompile Include="vector2_particle.cpp" />
     <ClCompile Include="vector3_particle.cpp" />
   </ItemGroup>
