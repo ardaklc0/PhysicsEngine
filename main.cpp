@@ -8,18 +8,19 @@
 using namespace cyclone;
 using namespace std;
 
-float func(float t, float y) {
-	return -10;
+float func(float t, float y, float y_prime) {
+	return -9.68;
 }
 
 int main() {
 	float initial_t = 0;
-	float initial_y = 0;
-	float step_size = 0.001;
-	float epochs = 2499;
+	float initial_y = 50;
+	float initial_y_prime = 0;
+	float step_size = 0.0001;
+	float epochs = 99999;
 
-	EulerMethod euler = EulerMethod(initial_t, initial_y, step_size);
-	float resultEuler = euler.solve(epochs, func);
+	SecondOrderEulerMethod euler = SecondOrderEulerMethod(initial_t, initial_y, initial_y_prime, step_size);
+	Vector2 resultEuler = euler.solveUntilZero(func);
 
 	return 0;
 }

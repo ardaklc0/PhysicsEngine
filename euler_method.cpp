@@ -12,6 +12,8 @@ float EulerMethod::solve(int n, float(*func)(float, float)) const
 		t = t + h;
 		if (i % 100 == 0)
 			cout << "(t, y)" << " = " << "(" << t << ", " << y << ")" << endl;
+		if (y < 0)
+			break;
 	}
 	return y;
 }
