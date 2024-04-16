@@ -1,18 +1,28 @@
 #include <iostream>
-#include "euler_method.h"
-#include "runge_kutta_4th.h"
-#include "runge_kutta_fehlberg.h"
-#include "second_order_euler_method.h"
-#include "third_order_euler_method.h"
+#include "matrix2.h"
 #include <cmath>
 using namespace cyclone;
 using namespace std;
 
-float func(float t, float y, float y_prime) {
-	return -9.68;
-}
+
 
 int main() {
+	Matrix2 matrix = {2, 4,
+					  5, 1};
+	float determinant = matrix.determinant();
+	cout << "Determinant: " << determinant << endl;
+	matrix.setInverse();
+	cout << "Inverse: " << matrix.data[0] << " " << matrix.data[1] << "\n"
+						<< matrix.data[2] << " " << matrix.data[3] << endl;
+	return 0;
+}
+
+
+/*	
+	float func(float t, float y, float y_prime) {
+		return -9.68;
+	}
+
 	float initial_t = 0;
 	float initial_y = 50;
 	float initial_y_prime = 0;
@@ -22,10 +32,6 @@ int main() {
 	SecondOrderEulerMethod euler = SecondOrderEulerMethod(initial_t, initial_y, initial_y_prime, step_size);
 	Vector2 resultEuler = euler.solveUntilZero(func);
 
-	return 0;
-}
-
-/*	
 	float initial_t = 0;
 	float initial_y = 48;
 	float initial_y_prime = 0;

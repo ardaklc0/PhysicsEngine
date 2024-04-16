@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="euler_method.h" />
+    <ClInclude Include="matrix2.h" />
     <ClInclude Include="second_order_euler_method.h" />
     <ClInclude Include="runge_kutta_4th.h" />
     <ClInclude Include="runge_kutta_fehlberg.h" />
