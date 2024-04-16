@@ -12,4 +12,5 @@ public:
 		t0(t0), y0(y0), y0_prime(y0_prime), y0_double_prime(y0_double_prime), h(h) {}
 
 	cyclone::Vector3 solve(int n, float(*func)(float, float, float, float)) const;
+	cyclone::Vector3 solveUntilZero(float(*func)(float, float, float, float)) const;
 };
