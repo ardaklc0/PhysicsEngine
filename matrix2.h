@@ -1,5 +1,6 @@
 #include "precision.h"
 #include "vector2.h"
+#include <iostream>
 
 namespace cyclone
 {
@@ -24,10 +25,8 @@ namespace cyclone
 		// Sets the matrix to be the identity matrix.
 		void setIdentity()
 		{
-			data[0] = 1;
-			data[1] = 0;
-			data[2] = 0;
-			data[3] = 1;
+			data[0] = 1; data[1] = 0;
+			data[2] = 0; data[3] = 1;
 		}
 
 		// Sets the matrix to be a rotation matrix.
@@ -62,15 +61,22 @@ namespace cyclone
 			return data[0] * data[3] - data[1] * data[2];
 		}
 
+		Matrix2 operator*(float scaler) const
+		{
+			return Matrix2(data[0] * scaler, data[1] * scaler, data[2] * scaler, data[3] * scaler);
+		}
+
 		void setInverse()
 		{
 			float det = determinant();
 			if (det == 0) return;
 			float invDet = 1.0f / det;
-			data[0] = data[3] * invDet;
-			data[1] = -data[1] * invDet;
-			data[2] = -data[2] * invDet;
-			data[3] = data[0] * invDet;
+			float temp = data[0];
+			data[0] = -data[3];
+			data[1] = data[1];
+			data[2] = data[2];
+			data[3] = -temp;
+			*this = *this * invDet;
 		}
 
 		float operator[](int i) const

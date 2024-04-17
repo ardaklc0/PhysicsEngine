@@ -48,6 +48,9 @@
     <ClInclude Include="matrix2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="matrix3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="vector3_particle.cpp">

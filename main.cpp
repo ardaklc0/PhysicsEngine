@@ -1,5 +1,6 @@
 #include <iostream>
 #include "matrix2.h"
+#include "matrix3.h"
 #include <cmath>
 using namespace cyclone;
 using namespace std;
@@ -14,6 +15,17 @@ int main() {
 	matrix.setInverse();
 	cout << "Inverse: " << matrix.data[0] << " " << matrix.data[1] << "\n"
 						<< matrix.data[2] << " " << matrix.data[3] << endl;
+	
+	Matrix3 matrix3 = {1, 2, 3,
+					   4, 5, 6,
+					   7, 8, 9};
+
+	float determinant3 = matrix3.determinant();
+	cout << "Determinant: " << determinant3 << endl;
+	matrix3.setInverse();
+	cout << "Inverse: " << matrix3.data[0] << " " << matrix3.data[1] << " " << matrix3.data[2] << "\n"
+						<< matrix3.data[3] << " " << matrix3.data[4] << " " << matrix3.data[5] << "\n"
+						<< matrix3.data[6] << " " << matrix3.data[7] << " " << matrix3.data[8] << endl;
 	return 0;
 }
 
