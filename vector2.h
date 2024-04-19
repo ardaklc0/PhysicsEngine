@@ -129,6 +129,16 @@ namespace cyclone
             return x * vector.x + y * vector.y;
         }
 
+        bool operator==(const Vector2& vector) const
+		{
+			return x == vector.x && y == vector.y;
+		}
+
+        bool operator==(std::nullptr_t) const
+        {
+            return false;
+        }
+
         float angleBetweenVectorsInRadians(const Vector2& vector) const
         {
             float dotProduct = *this * vector;

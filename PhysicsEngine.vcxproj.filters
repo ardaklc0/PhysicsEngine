@@ -51,6 +51,9 @@
     <ClInclude Include="matrix3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="euler_method_multi_variable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="vector3_particle.cpp">
@@ -78,6 +81,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="rover_path_analytic_solution.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="euler_method_multi_variable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
