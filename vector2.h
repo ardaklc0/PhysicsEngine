@@ -81,6 +81,18 @@ namespace cyclone
             return Vector2(x - vector.x, y - vector.y);
         }
 
+        Vector2 operator/(const float& scalar) const
+		{
+			return Vector2(x / scalar, y / scalar);
+        }
+
+        Vector2 operator/= (const float& scalar)
+		{
+			x /= scalar;
+			y /= scalar;
+			return *this;
+		}
+
         float operator[](int i) const
         {
 			if (i == 0) return x;

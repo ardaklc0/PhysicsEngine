@@ -77,5 +77,8 @@
     <ClCompile Include="third_order_euler_method.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="rover_path_analytic_solution.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
