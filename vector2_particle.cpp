@@ -2,28 +2,43 @@
 #include "vector2_particle.h"
 using namespace cyclone;
 
-void Vector2Particle::integrate(real duration)
+
+void Vector2Particle::setNewton(float newton)
 {
-    assert(duration > 0.0);
-    // Update linear position.
-    position.addScaledVector(velocity, duration);
-    // Work out the acceleration from the force.
-    Vector2 resultingAcc = acceleration;
-    resultingAcc.addScaledVector(forceAccum, inverseMass);
-    // Update linear velocity from the acceleration.
-    velocity.addScaledVector(resultingAcc, duration);
-    // Impose drag.
-    velocity *= real_pow(damping, duration);
-    // Clear the forces.
-    clearAccumulator();
+	this->newton = newton;
 }
 
-void Vector2Particle::clearAccumulator()
+float Vector2Particle::getNewton() const
 {
-    forceAccum.clear();
+	return newton;
 }
 
-void Vector2Particle::addForce(const Vector2& force)
+void Vector2Particle::setPosition(const Vector2& position)
 {
-    forceAccum += force;
+	this->position = position;
 }
+
+Vector2 Vector2Particle::getPosition() const
+{
+	return position;
+}
+
+float Vector2Particle::getAngle() const
+{
+	return atan2(position.y, position.x);
+}
+
+float Vector2Particle::getXCoordinate() const
+{
+	float angle = getAngle();
+	float xCoordinate = newton * cos(angle);
+	return xCoordinate;
+}
+
+float Vector2Particle::getYCoordinate() const
+{
+	float angle = getAngle();
+	float yCoordinate = newton * sin(angle);
+	return yCoordinate;
+}
+
