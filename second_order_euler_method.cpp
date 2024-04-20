@@ -18,8 +18,8 @@ cyclone::Vector2 SecondOrderEulerMethod::solve(int n, float(*func)(float, float,
 			y[1] + h * func(t, y[0], y[1])
 		);
 		t = t + h;
-		if (i % 100 == 0)
-			cout << "(t, y)" << " = " << "(" << t << ", " << "(" << y[0] << ", " << y[1] << ")" << ")" << endl;
+		if (i % 10 == 0)
+			cout << "(t, y, v)" << " = " << "(" << t << ", " << y[0] << ", " << y[1] << ")" << endl;
 		if (y[0] < 0)
 			break;
 	}
