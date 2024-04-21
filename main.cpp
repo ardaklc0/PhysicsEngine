@@ -1,41 +1,48 @@
 #include <iostream>
 #include <cmath>
 #include "vector2_particle.h"
+#include "second_order_euler_method.h"
+#include "euler_method.h"
+#include "vector2.h"
 using namespace std;
-using namespace cyclone;
+
+
+float func(float t, float y, float y_prime) {
+	// y'' = -3.9
+	return -3.9;
+}
+
+float funcAccel(float t, float y) {
+	// y' = 2.8
+	return 2.8;
+}
 
 
 int main() {
 
-	Vector2Particle particle = Vector2Particle(Vector2(-3, 4), 250);
-	float angle = particle.getAngle();
-	cout << "Angle: " << angle << endl;
-	cout << "X Coordinate: " << particle.getXCoordinate() << endl;
-	cout << "Y Coordinate: " << particle.getYCoordinate() << endl;
+	Vector2Particle pushForce = Vector2Particle(Vector2(1, 0), 0, 0.45, 2.8, 0); // N, kg, m/s, Ns/m
+	float initialVelocity = pushForce.getVelocity(); // m/s
+	float mass = pushForce.getMass(); // kg
+	Vector2 initialPosition = pushForce.getPosition(); // meters
+	float lastVelocity = 0; // m/s
+	float xDistance = 1; // meters
 
-	Vector2Particle particle2 = Vector2Particle(Vector2(1, 0), 50);
-	float angle2 = particle2.getAngle();
-	cout << "Angle: " << angle2 << endl;
-	cout << "X Coordinate: " << particle2.getXCoordinate() << endl;
-	cout << "Y Coordinate: " << particle2.getYCoordinate() << endl;
+	cout << "(x, y) = " << "(" << initialPosition.x << ", " << initialPosition.y << ")" << endl; // (1, 0)
+	cout << "v0x: " << initialVelocity << endl; // 2.8
+	cout << "m: " << mass << endl; // 0.45
 
-	Vector2Particle particle3 = Vector2Particle(Vector2(0, -2), 120);
-	float angle3 = particle3.getAngle();
-	cout << "Angle: " << angle3 << endl;
-	cout << "X Coordinate: " << particle3.getXCoordinate() << endl;
-	cout << "Y Coordinate: " << particle3.getYCoordinate() << endl;
 
-	float Rx = particle.getXCoordinate() + particle2.getXCoordinate() + particle3.getXCoordinate();
-	float Ry = particle.getYCoordinate() + particle2.getYCoordinate() + particle3.getYCoordinate();
+	SecondOrderEulerMethod eulerMethod = SecondOrderEulerMethod(0, 0, 2.8, 0.001); // (t0, y0, y0_prime, h)
+	Vector2 result = eulerMethod.solve(1001, func);
+	float acceleration = result.y;
 
-	cout << "Rx: " << Rx << endl;
-	cout << "Ry: " << Ry << endl;
+	float friction = 0.45 * acceleration;
+	pushForce.setFriction(friction);
+	
+	EulerMethod eulerMethod2 = EulerMethod(0, 0, 0.001); // (t0, y0, h)
+	float result2 = eulerMethod2.solve(1001, funcAccel);
 
-	float R = sqrt(Rx * Rx + Ry * Ry);
-	cout << "R: " << R << endl;
 
-	float angle4 = atan2(Ry, Rx);
-	cout << "Angle: " << angle4 * 180 / 3.14159 << endl;
 
 	return 0;
 }

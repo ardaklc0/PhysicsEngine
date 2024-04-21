@@ -1,6 +1,5 @@
 #include <assert.h>
 #include "vector2_particle.h"
-using namespace cyclone;
 
 
 void Vector2Particle::setNewton(float newton)
@@ -42,3 +41,32 @@ float Vector2Particle::getYCoordinate() const
 	return yCoordinate;
 }
 
+float Vector2Particle::getMass() const
+{
+	return mass;
+}
+
+void Vector2Particle::setMass(float mass)
+{
+	this->mass = mass;
+}
+
+float Vector2Particle::getVelocity() const
+{
+	return velocity;
+}
+
+void Vector2Particle::setVelocity(float velocity)
+{
+	this->velocity = velocity;
+}
+
+float Vector2Particle::getFriction() const
+{
+	return friction;
+}
+
+void Vector2Particle::setFriction(float friction)
+{
+	this->friction = friction;
+}

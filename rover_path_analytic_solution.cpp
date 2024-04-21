@@ -1,7 +1,6 @@
 #include <iostream>
 #include "vector2.h"
 #include <cmath>
-using namespace cyclone;
 using namespace std;
 #include <fstream>
 

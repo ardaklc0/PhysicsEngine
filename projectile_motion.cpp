@@ -3,9 +3,8 @@
 #include "euler_method.h"
 #include "second_order_euler_method.h"
 using namespace std;
-using namespace cyclone;
 
-float func(float t, float y) {
+float func1(float t, float y) {
 	// y' = v_0 - g * t
 	return 15 - 9.68 * t;
 }
@@ -17,7 +16,7 @@ float func2(float t, float y, float y_prime) {
 
 int projectile() {
 	EulerMethod euler = EulerMethod(0, 0, 0.01);
-	euler.solve(1000, func);
+	euler.solve(1000, func1);
 
 	cout << "----------------------------------------------------" << endl;
 

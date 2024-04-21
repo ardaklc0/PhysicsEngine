@@ -137,13 +137,12 @@
     <ClInclude Include="third_order_euler_method.h" />
     <ClInclude Include="vector2.h" />
     <ClInclude Include="vector2_particle.h" />
-    <ClInclude Include="vector3.h" />
-    <ClInclude Include="vector3_particle.h" />
     <ClInclude Include="precision.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="euler_method.cpp" />
     <ClCompile Include="euler_method_multi_variable.cpp" />
+    <ClCompile Include="net_force_calculator.cpp" />
     <ClCompile Include="projectile_motion.cpp" />
     <ClCompile Include="rover_path_analytic_solution.cpp" />
     <ClCompile Include="second_order_euler_method.cpp" />

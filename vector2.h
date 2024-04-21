@@ -1,9 +1,7 @@
-#include "precision.h"
-
-namespace cyclone
-{
-    class Vector2
-    {
+#include <cmath>
+#ifndef vector2_h
+#define vector2_h
+class Vector2{
     public:
         // Holds the value along the x axis.
         float x;
@@ -33,7 +31,7 @@ namespace cyclone
         // Gets the magnitude of this vector.
         float magnitude() const
         {
-            return real_sqrt(x * x + y * y);
+            return sqrt(x * x + y * y);
         }
 
         // Gets the squared magnitude of this vector.
@@ -82,23 +80,23 @@ namespace cyclone
         }
 
         Vector2 operator/(const float& scalar) const
-		{
-			return Vector2(x / scalar, y / scalar);
+	    {
+		    return Vector2(x / scalar, y / scalar);
         }
 
         Vector2 operator/= (const float& scalar)
-		{
-			x /= scalar;
-			y /= scalar;
-			return *this;
-		}
+	    {
+		    x /= scalar;
+		    y /= scalar;
+		    return *this;
+	    }
 
         float operator[](int i) const
         {
-			if (i == 0) return x;
-			else if (i == 1) return y;
-			else return 0;
-		}
+		    if (i == 0) return x;
+		    else if (i == 1) return y;
+		    else return 0;
+	    }
 
         // Adds the given vector to this, scaled by the given amount.
         void addScaledVector(const Vector2& vector, float scale)
@@ -130,9 +128,9 @@ namespace cyclone
         }
 
         bool operator==(const Vector2& vector) const
-		{
-			return x == vector.x && y == vector.y;
-		}
+	    {
+		    return x == vector.x && y == vector.y;
+	    }
 
         bool operator==(std::nullptr_t) const
         {
@@ -156,6 +154,16 @@ namespace cyclone
             return angleBetweenVectorsInRadians(vector) * 180 / 3.14159268f;
         }
 
+        float angleBetweenVectorsInRadians() const
+        {
+		    return atan2(y, x);
+	    }
+
+        float angleBetweenVectorsInDegrees() const
+        {
+		    return angleBetweenVectorsInRadians() * 180 / 3.14159268f;
+	    }
+
         void clear()
         {
             x = y = 0;
@@ -170,5 +178,5 @@ namespace cyclone
                 (*this) *= 1 / l;
             }
         }
-    };
-}
+};
+#endif // vector2_h

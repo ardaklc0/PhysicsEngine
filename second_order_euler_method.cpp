@@ -1,10 +1,9 @@
 #include "second_order_euler_method.h"
 #include <iostream>
-using namespace cyclone;
 using namespace std;
 #include <cmath>
 
-cyclone::Vector2 SecondOrderEulerMethod::solve(int n, float(*func)(float, float, float)) const
+Vector2 SecondOrderEulerMethod::solve(int n, float(*func)(float, float, float)) const
 {
 	float t = t0;
 	Vector2 y = Vector2(
@@ -24,7 +23,7 @@ cyclone::Vector2 SecondOrderEulerMethod::solve(int n, float(*func)(float, float,
 	return y;
 }
 
-cyclone::Vector2 SecondOrderEulerMethod::solveUntilZero(float(*func)(float, float, float)) const
+Vector2 SecondOrderEulerMethod::solveUntilZero(float(*func)(float, float, float)) const
 {
 	float t = t0;
 	Vector2 y = Vector2(
