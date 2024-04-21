@@ -48,6 +48,9 @@
     <ClInclude Include="euler_method_multi_variable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="newton_differentiation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="vector3_particle.cpp">
@@ -84,6 +87,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="net_force_calculator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="newton_differentiation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

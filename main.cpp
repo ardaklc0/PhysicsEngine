@@ -3,17 +3,18 @@
 #include "vector2_particle.h"
 #include "second_order_euler_method.h"
 #include "euler_method.h"
+#include "newton_differentiation.h"
 #include "vector2.h"
 using namespace std;
 
 
 float func(float t, float y, float y_prime) {
-	// y'' = -3.9
+	// y'' = v' = -3.9
 	return -3.9;
 }
 
 float funcAccel(float t, float y) {
-	// y' = 2.8
+	// y'  = v  = 2.8
 	return 2.8;
 }
 
@@ -38,11 +39,9 @@ int main() {
 
 	float friction = 0.45 * acceleration;
 	pushForce.setFriction(friction);
-	
+
 	EulerMethod eulerMethod2 = EulerMethod(0, 0, 0.001); // (t0, y0, h)
 	float result2 = eulerMethod2.solve(1001, funcAccel);
-
-
 
 	return 0;
 }

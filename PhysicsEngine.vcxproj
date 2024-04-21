@@ -131,6 +131,7 @@
     <ClInclude Include="euler_method_multi_variable.h" />
     <ClInclude Include="matrix2.h" />
     <ClInclude Include="matrix3.h" />
+    <ClInclude Include="newton_differentiation.h" />
     <ClInclude Include="second_order_euler_method.h" />
     <ClInclude Include="runge_kutta_4th.h" />
     <ClInclude Include="runge_kutta_fehlberg.h" />
@@ -143,6 +144,7 @@
     <ClCompile Include="euler_method.cpp" />
     <ClCompile Include="euler_method_multi_variable.cpp" />
     <ClCompile Include="net_force_calculator.cpp" />
+    <ClCompile Include="newton_differentiation.cpp" />
     <ClCompile Include="projectile_motion.cpp" />
     <ClCompile Include="rover_path_analytic_solution.cpp" />
     <ClCompile Include="second_order_euler_method.cpp" />
