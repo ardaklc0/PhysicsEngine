@@ -1,7 +1,6 @@
 #include <assert.h>
 #include "vector2_particle.h"
 
-
 void Vector2Particle::setNewton(float newton)
 {
 	this->newton = newton;
@@ -12,12 +11,12 @@ float Vector2Particle::getNewton() const
 	return newton;
 }
 
-void Vector2Particle::setPosition(const Vector2& position)
+void Vector2Particle::setPosition(const Vector2D& position)
 {
 	this->position = position;
 }
 
-Vector2 Vector2Particle::getPosition() const
+Vector2D Vector2Particle::getPosition() const
 {
 	return position;
 }

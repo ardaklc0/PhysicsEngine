@@ -1,7 +1,7 @@
 #include <cmath>
-#ifndef vector2_h
-#define vector2_h
-class Vector2{
+#ifndef Vector2D_h
+#define Vector2D_h
+class Vector2D{
     public:
         // Holds the value along the x axis.
         float x;
@@ -15,10 +15,10 @@ class Vector2{
 
     public:
         // The default constructor creates a zero vector.
-        Vector2() : x(0), y(0) {}
+        Vector2D() : x(0), y(0) {}
 
         // The explicit constructor creates a vector with the given components.
-        Vector2(const float x, const float y) :
+        Vector2D(const float x, const float y) :
             x(x), y(y) {}
 
         // Inverts this vector and returns a reference to it.
@@ -48,43 +48,43 @@ class Vector2{
         }
 
         // Overload of the multiply operator to scale a vector.
-        Vector2 operator*(const float& scalar) const
+        Vector2D operator*(const float& scalar) const
         {
-            return Vector2(x * scalar, y * scalar);
+            return Vector2D(x * scalar, y * scalar);
         }
 
         // Overload of the addition-assign to add a vector.
-        void operator+=(const Vector2& vector)
+        void operator+=(const Vector2D& vector)
         {
             x += vector.x;
             y += vector.y;
         }
 
         // Overload of the addition operator to add two vectors.
-        Vector2 operator+(const Vector2& vector) const
+        Vector2D operator+(const Vector2D& vector) const
         {
-            return Vector2(x + vector.x, y + vector.y);
+            return Vector2D(x + vector.x, y + vector.y);
         }
 
         // Overload of the subtraction-assign to subtract a vector.
-        void operator-=(const Vector2& vector)
+        void operator-=(const Vector2D& vector)
         {
             x -= vector.x;
             y -= vector.y;
         }
 
         // Overload of the subtraction operator to subtract two vectors.
-        Vector2 operator-(const Vector2& vector) const
+        Vector2D operator-(const Vector2D& vector) const
         {
-            return Vector2(x - vector.x, y - vector.y);
+            return Vector2D(x - vector.x, y - vector.y);
         }
 
-        Vector2 operator/(const float& scalar) const
+        Vector2D operator/(const float& scalar) const
 	    {
-		    return Vector2(x / scalar, y / scalar);
+		    return Vector2D(x / scalar, y / scalar);
         }
 
-        Vector2 operator/= (const float& scalar)
+        Vector2D operator/= (const float& scalar)
 	    {
 		    x /= scalar;
 		    y /= scalar;
@@ -99,35 +99,35 @@ class Vector2{
 	    }
 
         // Adds the given vector to this, scaled by the given amount.
-        void addScaledVector(const Vector2& vector, float scale)
+        void addScaledVector(const Vector2D& vector, float scale)
         {
             x += vector.x * scale;
             y += vector.y * scale;
         }
 
         // Calculates and returns the dot product of this vector with the given vector.
-        Vector2 componentProduct(const Vector2& vector) const
+        Vector2D componentProduct(const Vector2D& vector) const
         {
-            return Vector2(x * vector.x, y * vector.y);
+            return Vector2D(x * vector.x, y * vector.y);
         }
 
-        void componentProductUpdate(const Vector2& vector)
+        void componentProductUpdate(const Vector2D& vector)
         {
             x *= vector.x;
             y *= vector.y;
         }
 
 
-        float scalarProduct(const Vector2& vector) const
+        float scalarProduct(const Vector2D& vector) const
         {
             return x * vector.x + y * vector.y;
         }
 
-        float operator*(const Vector2& vector) const {
+        float operator*(const Vector2D& vector) const {
             return x * vector.x + y * vector.y;
         }
 
-        bool operator==(const Vector2& vector) const
+        bool operator==(const Vector2D& vector) const
 	    {
 		    return x == vector.x && y == vector.y;
 	    }
@@ -137,7 +137,7 @@ class Vector2{
             return false;
         }
 
-        float angleBetweenVectorsInRadians(const Vector2& vector) const
+        float angleBetweenVectorsInRadians(const Vector2D& vector) const
         {
             float dotProduct = *this * vector;
             float magnitudeProduct = (*this).magnitude() * vector.magnitude();
@@ -149,7 +149,7 @@ class Vector2{
             }
         }
 
-        float angleBetweenVectorsInDegrees(const Vector2& vector) const
+        float angleBetweenVectorsInDegrees(const Vector2D& vector) const
         {
             return angleBetweenVectorsInRadians(vector) * 180 / 3.14159268f;
         }
@@ -179,4 +179,4 @@ class Vector2{
             }
         }
 };
-#endif // vector2_h
+#endif // Vector2D_h

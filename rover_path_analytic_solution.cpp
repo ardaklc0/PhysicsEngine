@@ -4,8 +4,8 @@
 using namespace std;
 #include <fstream>
 
-Vector2 coordinates(float t) {
-	return Vector2(2 - 0.25 * pow(t, 2), t + 0.025 * pow(t, 3));
+Vector2D coordinates(float t) {
+	return Vector2D(2 - 0.25 * pow(t, 2), t + 0.025 * pow(t, 3));
 }
 
 int roverPathAnalyticSolution() {
@@ -29,7 +29,7 @@ int roverPathAnalyticSolution() {
 	ofstream roversPath;
 	roversPath.open("roversPath.txt");
 	for (float i = 0; i <= time; i += step) {
-		Vector2 coordinatesOfRover = coordinates(i);
+		Vector2D coordinatesOfRover = coordinates(i);
 		if (counter % (int)(step * 10000) == 0) {
 			cout << "Coordinates of the rover at t = " << i << " -> " << "(" << coordinatesOfRover.x << ", " << coordinatesOfRover.y << ")" << endl;
 			roversPath << "Coordinates of the rover at t = " << i << " -> " << "(" << coordinatesOfRover.x << ", " << coordinatesOfRover.y << ")" << endl;
@@ -38,19 +38,19 @@ int roverPathAnalyticSolution() {
 			cout << "Distance from the lander at t = " << i << " -> " << distance << endl;
 			roversPath << "Distance from the lander at t = " << i << " -> " << distance << endl;
 
-			Vector2 displacementAtZero = coordinates(i);
+			Vector2D displacementAtZero = coordinates(i);
 			cout << "Displacement of the rover at t = " << i << " -> " << "(" << displacementAtZero.x << ", " << displacementAtZero.y << ")" << endl;
 			roversPath << "Displacement of the rover at t = " << i << " -> " << "(" << displacementAtZero.x << ", " << displacementAtZero.y << ")" << endl;
 
-			Vector2 displacementAtTwo = coordinates(i + step);
+			Vector2D displacementAtTwo = coordinates(i + step);
 			cout << "Displacement of the rover at t = " << i + step << " -> " << "(" << displacementAtTwo.x << ", " << displacementAtTwo.y << ")" << endl;
 			roversPath << "Displacement of the rover at t = " << i + step << " -> " << "(" << displacementAtTwo.x << ", " << displacementAtTwo.y << ")" << endl;
 
-			Vector2 totalDisplacement = (displacementAtTwo - displacementAtZero);
+			Vector2D totalDisplacement = (displacementAtTwo - displacementAtZero);
 			cout << "Total Displacement of the rover from t =" << i << "to t = " << i + step << " -> " << "(" << totalDisplacement.x << ", " << totalDisplacement.y << ")" << endl;
 			roversPath << "Total Displacement of the rover from t =" << i << "to t = " << i + step << " -> " << "(" << totalDisplacement.x << ", " << totalDisplacement.y << ")" << endl;
 
-			Vector2 averageVelocity = totalDisplacement / step;
+			Vector2D averageVelocity = totalDisplacement / step;
 			cout << "Velocity of the rover from t =" << i << " to t = " << i + step << " -> " << "(" << averageVelocity.x << ", " << averageVelocity.y << ")" << endl;
 			roversPath << "Velocity of the rover from t =" << i << " to t = " << i + step << " -> " << "(" << averageVelocity.x << ", " << averageVelocity.y << ")" << endl;
 

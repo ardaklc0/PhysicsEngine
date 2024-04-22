@@ -3,16 +3,16 @@
 using namespace std;
 #include <cmath>
 
-Vector2 SecondOrderEulerMethod::solve(int n, float(*func)(float, float, float)) const
+Vector2D SecondOrderEulerMethod::solve(int n, float(*func)(float, float, float)) const
 {
 	float t = t0;
-	Vector2 y = Vector2(
+	Vector2D y = Vector2D(
 		y0,
 		y0_prime
 	);
 	for (int i = 0; i < n; i++)
 	{
-		y = Vector2(
+		y = Vector2D(
 			y[0] + h * y[1],
 			y[1] + h * func(t, y[0], y[1])
 		);
@@ -23,10 +23,10 @@ Vector2 SecondOrderEulerMethod::solve(int n, float(*func)(float, float, float)) 
 	return y;
 }
 
-Vector2 SecondOrderEulerMethod::solveUntilZero(float(*func)(float, float, float)) const
+Vector2D SecondOrderEulerMethod::solveUntilZero(float(*func)(float, float, float)) const
 {
 	float t = t0;
-	Vector2 y = Vector2(
+	Vector2D y = Vector2D(
 		y0,
 		y0_prime
 	);
@@ -35,7 +35,7 @@ Vector2 SecondOrderEulerMethod::solveUntilZero(float(*func)(float, float, float)
 	while (y[0] >= 0.0)
 	{
 		i = i + 1;
-		y = Vector2(
+		y = Vector2D(
 			y[0] + h * y[1],
 			y[1] + h * func(t, y[0], y[1])
 		);

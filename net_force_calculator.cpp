@@ -6,9 +6,9 @@ using namespace std;
 
 int netForceCalculator() {
 
-	Vector2Particle particle1 = Vector2Particle(Vector2(-3, 4), 250);
-	Vector2Particle particle2 = Vector2Particle(Vector2(1, 0), 50);
-	Vector2Particle particle3 = Vector2Particle(Vector2(0, -2), 120);
+	Vector2Particle particle1 = Vector2Particle(Vector2D(-3, 4), 250);
+	Vector2Particle particle2 = Vector2Particle(Vector2D(1, 0), 50);
+	Vector2Particle particle3 = Vector2Particle(Vector2D(0, -2), 120);
 
 	float angle1 = particle1.getAngle();
 	float angle2 = particle2.getAngle();
@@ -16,7 +16,7 @@ int netForceCalculator() {
 
 	float Rx = particle1.getXCoordinate() + particle2.getXCoordinate() + particle3.getXCoordinate();
 	float Ry = particle1.getYCoordinate() + particle2.getYCoordinate() + particle3.getYCoordinate();
-	Vector2 R = Vector2(Rx, Ry);
+	Vector2D R = Vector2D(Rx, Ry);
 
 	float RMagnitude = R.magnitude();
 	float angle4 = R.angleBetweenVectorsInDegrees();
