@@ -12,8 +12,8 @@ using namespace std;
 
 
 int main() {
-	const int screenWidth = 650;
-	const int screenHeight = 650;
+	const int screenWidth = 750;
+	const int screenHeight = 750;
 	InitWindow(screenWidth, screenHeight, "Test");
 	SetTargetFPS(60);
 
@@ -26,27 +26,28 @@ int main() {
 	float angle2 = particle2.getAngle();
 	float angle3 = particle3.getAngle();
 
-	float Rx = particle1.getXCoordinate() + particle2.getXCoordinate() + particle3.getXCoordinate();
-	float Ry = particle1.getYCoordinate() + particle2.getYCoordinate() + particle3.getYCoordinate();
-	Vector2D R = Vector2D(Rx, Ry);
+	float Rx = particle1.getXForce() + particle2.getXForce() + particle3.getXForce();
+	float Ry = particle1.getYForce() + particle2.getYForce() + particle3.getYForce();
 
-	float RMagnitude = R.magnitude();
-	float angle4 = R.angleBetweenVectorsInDegrees();
+	Vector2D R = particle1.getPosition() + particle2.getPosition() + particle3.getPosition();
+	Vector2D ForceR = Vector2D(Rx, Ry);
+
+	float RMagnitude = ForceR.magnitude();
+	float angle4 = ForceR.angleBetweenVectorsInDegrees();
 
 
 	cout << "Angle = " << angle1 << endl;
-	cout << "(x1, y1) = " << "(" << particle1.getXCoordinate() << ", " << particle1.getYCoordinate() << ")" << endl;
+	cout << "(Fx1, Fy1) = " << "(" << particle1.getXForce() << ", " << particle1.getYForce() << ")" << endl;
 
 	cout << "Angle = " << angle2 << endl;
-	cout << "(x2, y2) = " << "(" << particle2.getXCoordinate() << ", " << particle2.getYCoordinate() << ")" << endl;
+	cout << "(Fx2, Fy2) = " << "(" << particle2.getXForce() << ", " << particle2.getYForce() << ")" << endl;
 
 	cout << "Angle = " << angle3 << endl;
-	cout << "(x3, y3) = " << "(" << particle3.getXCoordinate() << ", " << particle3.getYCoordinate() << ")" << endl;
+	cout << "(Fx3, Fy3) = " << "(" << particle3.getXForce() << ", " << particle3.getYForce() << ")" << endl;
 
 
 	cout << "(Rx, Ry) = " << "(" << R.x << ", " << R.y << ")" << endl;
 	cout << "|R| = " << RMagnitude << endl;
-
 	cout << "Angle: " << angle4 << endl;
 
 	while (!WindowShouldClose())
@@ -55,10 +56,10 @@ int main() {
 		ClearBackground(BLACK);
 		CustomRaylib::PlotGrids(screenWidth, screenHeight);
 
-		CustomRaylib::PlotOriginVector2D(screenWidth, screenHeight, particle1.getXCoordinate(), particle1.getYCoordinate(), DARKGREEN);
-		CustomRaylib::PlotOriginVector2D(screenWidth, screenHeight, particle2.getXCoordinate(), particle2.getYCoordinate(), DARKGREEN);
-		CustomRaylib::PlotOriginVector2D(screenWidth, screenHeight, particle3.getXCoordinate(), particle3.getYCoordinate(), DARKGREEN);
-		CustomRaylib::PlotOriginVector2D(screenWidth, screenHeight, R.x, R.y, DARKGREEN);
+		CustomRaylib::PlotOriginVector2D(screenWidth, screenHeight, particle1.getXPosition(), particle1.getYPosition(), DARKGREEN);
+		CustomRaylib::PlotOriginVector2D(screenWidth, screenHeight, particle2.getXPosition(), particle2.getYPosition(), DARKGREEN);
+		CustomRaylib::PlotOriginVector2D(screenWidth, screenHeight, particle3.getXPosition(), particle3.getYPosition(), DARKGREEN);
+		CustomRaylib::PlotOriginVector2D(screenWidth, screenHeight, R.x, R.y, BLUE);
 
 		EndDrawing();
 	}

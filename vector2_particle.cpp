@@ -26,14 +26,24 @@ float Vector2Particle::getAngle() const
 	return atan2(position.y, position.x);
 }
 
-float Vector2Particle::getXCoordinate() const
+float Vector2Particle::getXPosition() const
+{
+	return position.x;
+}
+
+float Vector2Particle::getYPosition() const
+{
+	return position.y;
+}
+
+float Vector2Particle::getXForce() const
 {
 	float angle = getAngle();
 	float xCoordinate = newton * cos(angle);
 	return xCoordinate;
 }
 
-float Vector2Particle::getYCoordinate() const
+float Vector2Particle::getYForce() const
 {
 	float angle = getAngle();
 	float yCoordinate = newton * sin(angle);

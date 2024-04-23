@@ -32,8 +32,10 @@ public:
     void setPosition(const Vector2D& position);
     Vector2D getPosition() const;
     float getAngle() const;
-    float getXCoordinate() const;
-    float getYCoordinate() const;
+    float getXPosition() const;
+    float getYPosition() const;
+    float getXForce() const;
+    float getYForce() const;
     float getMass() const;
     void setMass(float mass);
     float getVelocity() const;

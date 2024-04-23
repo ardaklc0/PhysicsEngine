@@ -14,8 +14,8 @@ int netForceCalculator() {
 	float angle2 = particle2.getAngle();
 	float angle3 = particle3.getAngle();
 
-	float Rx = particle1.getXCoordinate() + particle2.getXCoordinate() + particle3.getXCoordinate();
-	float Ry = particle1.getYCoordinate() + particle2.getYCoordinate() + particle3.getYCoordinate();
+	float Rx = particle1.getXForce() + particle2.getXForce() + particle3.getXForce();
+	float Ry = particle1.getYForce() + particle2.getYForce() + particle3.getYForce();
 	Vector2D R = Vector2D(Rx, Ry);
 
 	float RMagnitude = R.magnitude();
@@ -23,13 +23,13 @@ int netForceCalculator() {
 
 
 	cout << "Angle = " << angle1 << endl;
-	cout << "(x1, y1) = " << "(" << particle1.getXCoordinate() << ", " << particle1.getYCoordinate() << ")" << endl;
+	cout << "(x1, y1) = " << "(" << particle1.getXForce() << ", " << particle1.getYForce() << ")" << endl;
 
 	cout << "Angle = " << angle2 << endl;
-	cout << "(x2, y2) = " << "(" << particle2.getXCoordinate() << ", " << particle2.getYCoordinate() << ")" << endl;
+	cout << "(x2, y2) = " << "(" << particle2.getXForce() << ", " << particle2.getYForce() << ")" << endl;
 
 	cout << "Angle = " << angle3 << endl;
-	cout << "(x3, y3) = " << "(" << particle3.getXCoordinate() << ", " << particle3.getYCoordinate() << ")" << endl;
+	cout << "(x3, y3) = " << "(" << particle3.getXForce() << ", " << particle3.getYForce() << ")" << endl;
 
 
 	cout << "(Rx, Ry) = " << "(" << R.x << ", " << R.y << ")" << endl;

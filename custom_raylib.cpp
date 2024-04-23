@@ -21,7 +21,6 @@ void CustomRaylib::PlotGrids(float screenWidth, float screenHeight) {
 }
 
 void CustomRaylib::PlotOriginVector2D(float screenWidth, float screenHeight, float x, float y, Color color) {
-	DrawCircle(screenWidth / 2 + x * 60, screenHeight / 2 - y * 60, 3, color);
 	DrawLine(screenWidth / 2, screenHeight / 2, screenWidth / 2 + x * 60, screenHeight / 2 - y * 60, color);
 }
 
