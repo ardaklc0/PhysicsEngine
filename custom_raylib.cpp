@@ -24,3 +24,9 @@ void CustomRaylib::PlotOriginVector2D(float screenWidth, float screenHeight, flo
 	DrawLine(screenWidth / 2, screenHeight / 2, screenWidth / 2 + x * 60, screenHeight / 2 - y * 60, color);
 }
 
+void CustomRaylib::WriteLegend(float x, float y, const char *text, Color color) {
+	DrawTextEx(GetFontDefault(), text, { 10 + x, y }, 20, 5, WHITE);
+	DrawCircle(x, y + 10, 5, color);
+}
+
+

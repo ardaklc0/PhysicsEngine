@@ -57,9 +57,13 @@ int main() {
 		CustomRaylib::PlotGrids(screenWidth, screenHeight);
 
 		CustomRaylib::PlotOriginVector2D(screenWidth, screenHeight, particle1.getXPosition(), particle1.getYPosition(), DARKGREEN);
-		CustomRaylib::PlotOriginVector2D(screenWidth, screenHeight, particle2.getXPosition(), particle2.getYPosition(), DARKGREEN);
-		CustomRaylib::PlotOriginVector2D(screenWidth, screenHeight, particle3.getXPosition(), particle3.getYPosition(), DARKGREEN);
+		CustomRaylib::WriteLegend(10, 10, "Vector 1", DARKGREEN);
+		CustomRaylib::PlotOriginVector2D(screenWidth, screenHeight, particle2.getXPosition(), particle2.getYPosition(), RED);
+		CustomRaylib::WriteLegend(10, 30, "Vector 2", RED);
+		CustomRaylib::PlotOriginVector2D(screenWidth, screenHeight, particle3.getXPosition(), particle3.getYPosition(), ORANGE);
+		CustomRaylib::WriteLegend(10, 50, "Vector 3", ORANGE);
 		CustomRaylib::PlotOriginVector2D(screenWidth, screenHeight, R.x, R.y, BLUE);
+		CustomRaylib::WriteLegend(10, 70, "Vector R", BLUE);
 
 		EndDrawing();
 	}
