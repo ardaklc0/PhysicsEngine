@@ -6,69 +6,59 @@
 #include "newton_differentiation.h"
 #include "vector2.h"
 #include <raylib.h>
+#include "custom_raylib.h"
 using namespace std;
 
 
-float func(float t, float y, float y_prime) {
-	// y'' = v' = -3.9
-	return -3.9;
-}
-
-float funcAccel(float t, float y) {
-	// y'  = v  = 2.8
-	return 2.8;
-}
-
 
 int main() {
-	const int screenWidth = 600;
-	const int screenHeight = 600;
+	const int screenWidth = 650;
+	const int screenHeight = 650;
 	InitWindow(screenWidth, screenHeight, "Test");
 	SetTargetFPS(60);
 
-	Vector2Particle pushForce = Vector2Particle(Vector2D(1, 0), 0, 0.45, 2.8, 0); // N, kg, m/s, Ns/m
-	float initialVelocity = pushForce.getVelocity(); // m/s
-	float mass = pushForce.getMass(); // kg
-	Vector2D initialPosition = pushForce.getPosition(); // meters
-	float lastVelocity = 0; // m/s
-	float xDistance = 1; // meters
 
-	cout << "(x, y) = " << "(" << initialPosition.x << ", " << initialPosition.y << ")" << endl; // (1, 0)
-	cout << "v0x: " << initialVelocity << endl; // 2.8
-	cout << "m: " << mass << endl; // 0.45
+	Vector2Particle particle1 = Vector2Particle(Vector2D(-3, 4), 250);
+	Vector2Particle particle2 = Vector2Particle(Vector2D(1, 0), 50);
+	Vector2Particle particle3 = Vector2Particle(Vector2D(0, -2), 120);
 
-	SecondOrderEulerMethod eulerMethod = SecondOrderEulerMethod(0, 0, 2.8, 0.001); // (t0, y0, y0_prime, h)
-	Vector2D result = eulerMethod.solve(1001, func);
-	float acceleration = result.y;
+	float angle1 = particle1.getAngle();
+	float angle2 = particle2.getAngle();
+	float angle3 = particle3.getAngle();
 
-	float friction = 0.45 * acceleration;
-	pushForce.setFriction(friction);
+	float Rx = particle1.getXCoordinate() + particle2.getXCoordinate() + particle3.getXCoordinate();
+	float Ry = particle1.getYCoordinate() + particle2.getYCoordinate() + particle3.getYCoordinate();
+	Vector2D R = Vector2D(Rx, Ry);
 
-	EulerMethod eulerMethod2 = EulerMethod(0, 0, 0.001); // (t0, y0, h)
-	float result2 = eulerMethod2.solve(1001, funcAccel);
+	float RMagnitude = R.magnitude();
+	float angle4 = R.angleBetweenVectorsInDegrees();
 
+
+	cout << "Angle = " << angle1 << endl;
+	cout << "(x1, y1) = " << "(" << particle1.getXCoordinate() << ", " << particle1.getYCoordinate() << ")" << endl;
+
+	cout << "Angle = " << angle2 << endl;
+	cout << "(x2, y2) = " << "(" << particle2.getXCoordinate() << ", " << particle2.getYCoordinate() << ")" << endl;
+
+	cout << "Angle = " << angle3 << endl;
+	cout << "(x3, y3) = " << "(" << particle3.getXCoordinate() << ", " << particle3.getYCoordinate() << ")" << endl;
+
+
+	cout << "(Rx, Ry) = " << "(" << R.x << ", " << R.y << ")" << endl;
+	cout << "|R| = " << RMagnitude << endl;
+
+	cout << "Angle: " << angle4 << endl;
 
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();
 		ClearBackground(BLACK);
-		DrawLine(0, screenHeight / 2, screenWidth, screenHeight / 2, WHITE);
-		DrawLine(screenWidth / 2, 0, screenWidth / 2, screenHeight, WHITE);
+		CustomRaylib::PlotGrids(screenWidth, screenHeight);
 
-		for (int i = -300; i <= 360; i += 60)
-		{
-			int index = i / 60;
-			char str[10];
-			sprintf_s(str, "%d", index);
-			DrawCircle(screenWidth / 2 + i, screenHeight / 2, 3, RED);
-			DrawText(str, screenWidth / 2 + i + 5, screenHeight / 2, 10, WHITE);
-
-			if (i == 0)
-				continue;
-
-			DrawCircle(screenWidth / 2, screenHeight / 2 + i, 3, RED);
-			DrawText(str, screenWidth / 2, screenHeight / 2 + i + 5, 10, WHITE);
-		}
+		CustomRaylib::PlotOriginVector2D(screenWidth, screenHeight, particle1.getXCoordinate(), particle1.getYCoordinate(), DARKGREEN);
+		CustomRaylib::PlotOriginVector2D(screenWidth, screenHeight, particle2.getXCoordinate(), particle2.getYCoordinate(), DARKGREEN);
+		CustomRaylib::PlotOriginVector2D(screenWidth, screenHeight, particle3.getXCoordinate(), particle3.getYCoordinate(), DARKGREEN);
+		CustomRaylib::PlotOriginVector2D(screenWidth, screenHeight, R.x, R.y, DARKGREEN);
 
 		EndDrawing();
 	}
@@ -77,3 +67,4 @@ int main() {
 	CloseWindow();
 	return 0;
 }
+

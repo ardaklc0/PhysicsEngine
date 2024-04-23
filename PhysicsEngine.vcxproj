@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="custom_raylib.h" />
     <ClInclude Include="euler_method.h" />
     <ClInclude Include="euler_method_multi_variable.h" />
     <ClInclude Include="matrix2.h" />
@@ -143,6 +144,7 @@
   <ItemGroup>
     <ClCompile Include="euler_method.cpp" />
     <ClCompile Include="euler_method_multi_variable.cpp" />
+    <ClCompile Include="milk_bottle_f_ma.cpp" />
     <ClCompile Include="net_force_calculator.cpp" />
     <ClCompile Include="newton_differentiation.cpp" />
     <ClCompile Include="projectile_motion.cpp" />
@@ -151,6 +153,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="runge_kutta_4th.cpp" />
     <ClCompile Include="runge_kutta_fehlberg.cpp" />
+    <ClCompile Include="custom_raylib.cpp" />
     <ClCompile Include="third_order_euler_method.cpp" />
     <ClCompile Include="vector2_particle.cpp" />
     <ClCompile Include="vector3_particle.cpp" />

@@ -51,6 +51,9 @@
     <ClInclude Include="newton_differentiation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="custom_raylib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="vector3_particle.cpp">
@@ -90,6 +93,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="newton_differentiation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="milk_bottle_f_ma.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="custom_raylib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
