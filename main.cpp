@@ -10,13 +10,11 @@
 using namespace std;
 
 
-
 int main() {
-	const int screenWidth = 750;
-	const int screenHeight = 750;
+	const int screenWidth = 650;
+	const int screenHeight = 650;
 	InitWindow(screenWidth, screenHeight, "Test");
 	SetTargetFPS(60);
-
 
 	Vector2Particle particle1 = Vector2Particle(Vector2D(-3, 4), 250);
 	Vector2Particle particle2 = Vector2Particle(Vector2D(1, 0), 50);
@@ -50,21 +48,28 @@ int main() {
 	cout << "|R| = " << RMagnitude << endl;
 	cout << "Angle: " << angle4 << endl;
 
+	float normalizedForce1 = (particle1.getNewton() - 50) / 250 + 1;
+	cout << "Normalized Force 1: " << normalizedForce1 << endl;
+	float normalizedForce2 = (particle2.getNewton() - 50) / 250 + 1;
+	cout << "Normalized Force 2: " << normalizedForce2 << endl;
+	float normalizedForce3 = (particle3.getNewton() - 50) / 250 + 1;
+	cout << "Normalized Force 3: " << normalizedForce3 << endl;
+	float normalizedForceR = (RMagnitude - 50) / 250 + 1;
+	cout << "Normalized Force R: " << normalizedForceR << endl;
+
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();
 		ClearBackground(BLACK);
 		CustomRaylib::PlotGrids(screenWidth, screenHeight);
-
-		CustomRaylib::PlotOriginVector2D(screenWidth, screenHeight, particle1.getXPosition(), particle1.getYPosition(), DARKGREEN);
-		CustomRaylib::WriteLegend(10, 10, "Vector 1", DARKGREEN);
-		CustomRaylib::PlotOriginVector2D(screenWidth, screenHeight, particle2.getXPosition(), particle2.getYPosition(), RED);
+		CustomRaylib::PlotThickOriginVector2D(screenWidth, screenHeight, particle1.getXPosition(), particle1.getYPosition(), PINK, normalizedForce1);
+		CustomRaylib::WriteLegend(10, 10, "Vector 1", PINK);
+		CustomRaylib::PlotThickOriginVector2D(screenWidth, screenHeight, particle2.getXPosition(), particle2.getYPosition(), RED, normalizedForce2);
 		CustomRaylib::WriteLegend(10, 30, "Vector 2", RED);
-		CustomRaylib::PlotOriginVector2D(screenWidth, screenHeight, particle3.getXPosition(), particle3.getYPosition(), ORANGE);
+		CustomRaylib::PlotThickOriginVector2D(screenWidth, screenHeight, particle3.getXPosition(), particle3.getYPosition(), ORANGE, normalizedForce3);
 		CustomRaylib::WriteLegend(10, 50, "Vector 3", ORANGE);
-		CustomRaylib::PlotOriginVector2D(screenWidth, screenHeight, R.x, R.y, BLUE);
+		CustomRaylib::PlotThickOriginVector2D(screenWidth, screenHeight, R.x, R.y, GREEN, normalizedForceR);
 		CustomRaylib::WriteLegend(10, 70, "Vector R", BLUE);
-
 		EndDrawing();
 	}
 
