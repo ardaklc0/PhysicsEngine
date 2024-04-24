@@ -15,8 +15,9 @@ void CustomRaylib::PlotGrids(float screenWidth, float screenHeight) {
 		DrawText(str, screenWidth / 2 + i + 5, screenHeight / 2, 10, WHITE);
 		if (i == 0)
 			continue;
+		sprintf_s(str, "%d", -index);
 		DrawCircle(screenWidth / 2, screenHeight / 2 + i, 3, WHITE);
-		DrawText(str, screenWidth / 2, screenHeight / 2 + i + 5, 10, WHITE);
+		DrawText(str, screenWidth / 2 + 5, screenHeight / 2 + i + 5, 10, WHITE);
 	}
 }
 

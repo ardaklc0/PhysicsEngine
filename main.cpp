@@ -36,10 +36,10 @@ int main() {
 	int letterCountX = 0;
 	int letterCountY = 0;
 	
-	Rectangle textBoxX = { 545, 10, 25, 25 };
-	Rectangle textBoxY = { 585, 10, 25, 25 };
-	Rectangle submitButton = { 500, 40, 75, 25 };
-	Rectangle deleteButton = { 500, 70, 75, 25 };
+	Rectangle textBoxX = { 545, 10, 30, 25 };
+	Rectangle textBoxY = { 585, 10, 30, 25 };
+	Rectangle submitButton = { 465, 40, 75, 25 };
+	Rectangle deleteButton = { 545, 40, 75, 25 };
 
 	bool mouseOnSubmitButton = false;
 	bool mouseOnDeleteButton = false;
@@ -60,8 +60,8 @@ int main() {
 	{
 		DrawTextEx(GetFontDefault(), "(x,y)=", { 467, 14 }, 20, 5, WHITE);
 		DrawTextEx(GetFontDefault(), "(", { 540, 14 }, 20, 5, WHITE);
-		DrawTextEx(GetFontDefault(), ",", { 575, 14 }, 20, 5, WHITE);
-		DrawTextEx(GetFontDefault(), ")", { 610, 14 }, 20, 5, WHITE);
+		DrawTextEx(GetFontDefault(), ",", { 576, 14 }, 20, 5, WHITE);
+		DrawTextEx(GetFontDefault(), ")", { 615, 14 }, 20, 5, WHITE);
 
 		if (CheckCollisionPointRec(GetMousePosition(), textBoxX)) mouseOnTextX = true;
 		else mouseOnTextX = false;
