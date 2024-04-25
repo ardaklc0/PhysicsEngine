@@ -157,6 +157,7 @@
     <ClCompile Include="third_order_euler_method.cpp" />
     <ClCompile Include="vector2_particle.cpp" />
     <ClCompile Include="vector3_particle.cpp" />
+    <ClCompile Include="vector_simulator.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -55,7 +55,7 @@ int milkBottleFMa() {
 	{
 		BeginDrawing();
 		ClearBackground(BLACK);
-		CustomRaylib::PlotGrids(screenWidth, screenHeight);
+		CustomRaylib::PlotAxis(screenWidth, screenHeight);
 
 		DrawCircle(screenWidth / 2 + initialPosition.x * 60, screenHeight / 2 - initialPosition.y * 60, 3, RED);
 		DrawLine(screenWidth / 2, screenHeight / 2, screenWidth / 2 + initialPosition.x * 60, screenHeight / 2 - initialPosition.y * 60, RED);
