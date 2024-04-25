@@ -21,26 +21,28 @@ int main() {
 	const int screenHeight = 600;
 	InitWindow(screenWidth, screenHeight, "Test");
 	SetTargetFPS(70);
-	SecondOrderEulerMethod second_order_euler = SecondOrderEulerMethod(0, 60, 0, 0.01);
+	SecondOrderEulerMethod second_order_euler = SecondOrderEulerMethod(0, 50, 0, 0.01);
 	vector<Vector2D> resultList = second_order_euler.solve(1000, freeFall);
 	float resultSize = resultList.size();
 	cout << "Result size: " << resultSize << endl;
 	float initialMeter = second_order_euler.y0 / 10;
-	int index = 0;
+	double startTime = GetTime(); // Get the start time
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();
 		CustomRaylib::PlotDistanceRuler(screenWidth, screenHeight);
 		ClearBackground(BLACK);
-		if (index < 352)
-		{
+		double currentTime = GetTime(); // Get the current time
+		double elapsedTime = currentTime - startTime; // Calculate elapsed time
+		if (elapsedTime < 3.21095) { // Check if animation time is less than 3.2 seconds
+			int index = static_cast<int>(elapsedTime * resultSize / 3.21095); // Calculate index based on elapsed time
 			initialMeter = resultList[index].x / 10;
 			DrawCircle(screenWidth / 2, screenHeight - initialMeter * 60, 10, WHITE);
 		}
-		index++;
 		EndDrawing();
+		if (elapsedTime >= 3.21095) // End the animation after 3.2 seconds
+			break;
 	}
-
 
 	CloseWindow();
 	return 0;
