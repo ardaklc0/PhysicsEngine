@@ -41,16 +41,20 @@ void CustomRaylib::PlotThickOriginVector2D(float screenWidth, float screenHeight
 }
 
 void CustomRaylib::PlotDistanceRuler(float screenWidth, float screenHeight) {
-	for (int i = 460; i >= 0; i -= 60)
+	for (int i = 600; i > 0; i -= 60)
 	{
-		DrawLine(screenWidth / 3, i, screenWidth / 3 + 10, i, WHITE);
-		DrawLineEx({ screenWidth / 3 + 10, 10 }, {screenWidth / 3 + 10, (float)(screenHeight / 1.3) + 20}, 2 , WHITE);
-		DrawLineEx({ screenHeight / 3, (float)(screenHeight / 1.35) }, { (float)(screenWidth / 1.5), (float)(screenHeight / 1.35) },  2, WHITE);
+		// Bars
+		DrawLine(screenWidth / 3, i, screenWidth / 3 - 10, i, WHITE);
+		// Vertical line
+		DrawLineEx({ screenWidth / 3, 0}, {screenWidth / 3, screenHeight}, 2 , WHITE);
+		// Horizontal line
+		DrawLineEx({ 0, screenHeight }, { screenWidth, screenHeight },  2, WHITE);
 
-		int index = (460 - i) / 6;
+
+		int index = (600 - i) / 6;
 		char str[10];
-		sprintf_s(str, "%d", index);
-		DrawText(str, screenWidth / 3 - 15, i, 10, WHITE);
+		sprintf_s(str, "%d m", index);
+		DrawText(str, screenWidth / 3 - 35, i - 15, 10, WHITE);
 
 
 	}

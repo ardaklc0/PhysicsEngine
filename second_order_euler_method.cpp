@@ -3,15 +3,20 @@
 using namespace std;
 #include <cmath>
 
-Vector2D SecondOrderEulerMethod::solve(int n, float(*func)(float, float, float)) const
+#include <vector> // Include the vector header
+
+std::vector<Vector2D> SecondOrderEulerMethod::solve(int n, float(*func)(float, float, float)) const
 {
 	float t = t0;
 	Vector2D y = Vector2D(
 		y0,
 		y0_prime
 	);
+	std::vector<Vector2D> resultList; // Vector to store the calculated Vector2D objects
 	for (int i = 0; i < n; i++)
 	{
+		resultList.push_back(y); // Add the current Vector2D to the result list
+
 		y = Vector2D(
 			y[0] + h * y[1],
 			y[1] + h * func(t, y[0], y[1])
@@ -22,8 +27,9 @@ Vector2D SecondOrderEulerMethod::solve(int n, float(*func)(float, float, float))
 		if (y[0] < 0.0)
 			break;
 	}
-	return y;
+	return resultList; // Return the list of Vector2D objects
 }
+
 
 Vector2D SecondOrderEulerMethod::solveUntilZero(float(*func)(float, float, float)) const
 {
