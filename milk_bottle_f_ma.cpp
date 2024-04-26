@@ -42,7 +42,7 @@ int milkBottleFMa() {
 	cout << "m: " << mass << endl; // 0.45
 
 	SecondOrderEulerMethod eulerMethod = SecondOrderEulerMethod(0, 0, 2.8, 0.001); // (t0, y0, y0_prime, h)
-	vector<Vector2D> result = eulerMethod.solve(1001, func);
+	//vector<Vector2D> result = eulerMethod.solve(1001, func);
 	//float acceleration = result.y;
 
 	//float friction = 0.45 * acceleration;
