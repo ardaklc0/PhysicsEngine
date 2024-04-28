@@ -25,8 +25,8 @@ Vector2Particle particleR = Vector2Particle(R, 0);
 
 
 int vector_simulator() {
-	const int screenWidth = 650;
-	const int screenHeight = 650;
+	const int screenWidth = 600;
+	const int screenHeight = 600;
 
 	InitWindow(screenWidth, screenHeight, "Test");
 
