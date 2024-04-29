@@ -11,6 +11,7 @@
 #include <vector>
 using namespace std;
 #define MAX_INPUT_CHARS_POSITION 3
+#define MAX_INPUT_CHARS_VELOCITY 3
 SecondOrderEulerMethod second_order_euler = SecondOrderEulerMethod(0, 0, 0, 0.001);
 
 float freeFall(float t, float y, float y_prime) {
@@ -23,6 +24,7 @@ double startTime = GetTime(); // Get the start time
 char elapsedTimeStr[10];
 char lastTime[10];
 char currentPosition[10];
+char velocity[10];
 double elapsedTime;
 double currentTime;
 int index;
@@ -32,6 +34,7 @@ float resultSize;
 vector<pair<float, Vector2D>> resultList;
 float timeDelta;
 float initialMeter;
+float initialVelocity = 0;
 
 
 int main() {
@@ -41,17 +44,22 @@ int main() {
 	SetTargetFPS(70);
 	
 	char namePosition[MAX_INPUT_CHARS_POSITION + 1] = "\0";
+	char nameVelocity[MAX_INPUT_CHARS_VELOCITY + 1] = "\0";
 	
 	int letterCountPosition = 0;
+	int letterCountVelocity = 0;
 
 	Rectangle textBoxPosition = { screenWidth - 85, 60, 50, 25};
-	Rectangle submitButton = { screenWidth - 240, 100, 220, 25 };
+	Rectangle submitButton = { screenWidth - 240, 200, 220, 25 };
+	Rectangle textBoxVelocity = { screenWidth - 85, 100, 50, 25 };
 
 	bool mouseOnTextPosition = false;
 	bool mouseOnSubmitButton = false;
+	bool mouseOnTextVelocity = false;
 
 	int framesCounterPosition = 0;
 	int framesCounterSubmitButton = 0;
+	int framesCounterVelocity = 0;
 
 	second_order_euler = SecondOrderEulerMethod(0, initialYPosition, 0, 0.001);
 	resultList = second_order_euler.solve(10000, freeFall);
@@ -67,7 +75,10 @@ int main() {
 
 	while (!WindowShouldClose())
 	{
-		DrawText("Current Position: ", screenWidth - 240, 70, 18, RED);
+		DrawText("Initial Position: ", screenWidth - 240, 70, 18, RED);
+		DrawText("Initial Velocity: ", screenWidth - 240, 100, 18, RED);
+		snprintf(velocity, 10, "%.2f", initialVelocity);
+		DrawText(velocity, screenWidth - 85, 60, 18, RED);
 
 		if (CheckCollisionPointRec(GetMousePosition(), textBoxPosition)) mouseOnTextPosition = true;
 		else mouseOnTextPosition = false;
@@ -97,6 +108,34 @@ int main() {
 		if (mouseOnTextPosition) framesCounterPosition++;
 		else framesCounterPosition = 0;
 
+		if (CheckCollisionPointRec(GetMousePosition(), textBoxVelocity)) mouseOnTextVelocity = true;
+		else mouseOnTextVelocity = false;
+		if (mouseOnTextVelocity)
+		{
+			SetMouseCursor(MOUSE_CURSOR_IBEAM);
+			int keyX = GetCharPressed();
+			while (keyX > 0)
+			{
+				if ((keyX >= 32) && (keyX <= 125) && (letterCountVelocity < MAX_INPUT_CHARS_VELOCITY))
+				{
+					nameVelocity[letterCountVelocity] = (char)keyX;
+					nameVelocity[letterCountVelocity + 1] = '\0';
+					letterCountVelocity++;
+				}
+				keyX = GetCharPressed();
+			}
+			if (IsKeyPressed(KEY_BACKSPACE))
+			{
+				letterCountVelocity--;
+				if (letterCountVelocity < 0) letterCountVelocity = 0;
+				nameVelocity[letterCountVelocity] = '\0';
+			}
+		}
+
+		else SetMouseCursor(MOUSE_CURSOR_DEFAULT);
+		if (mouseOnTextVelocity) framesCounterVelocity++;
+		else framesCounterVelocity = 0;
+
 		if (CheckCollisionPointRec(GetMousePosition(), submitButton)) mouseOnSubmitButton = true;
 		else mouseOnSubmitButton = false;
 		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
@@ -107,7 +146,8 @@ int main() {
 
 			// Assuming input position is in centimeters, convert to meters for simulation
 			initialYPosition = std::stoi(namePosition);
-			second_order_euler = SecondOrderEulerMethod(0, initialYPosition, 0, 0.001);
+			initialVelocity = std::stoi(nameVelocity);
+			second_order_euler = SecondOrderEulerMethod(0, initialYPosition, initialVelocity, 0.001);
 			resultList = second_order_euler.solve(10000, freeFall);
 			resultSize = resultList.size();
 
@@ -149,6 +189,7 @@ int main() {
 			DrawText("Current Position: ", screenWidth - 240, 40, 18, RED);
 			DrawText(currentPosition, screenWidth - 85, 40, 18, RED);
 			DrawText("m", screenWidth - 30, 40, 18, RED);
+	
 		}
 		
 		if (elapsedTime >= timeDelta) {
@@ -176,6 +217,11 @@ int main() {
 		if (mouseOnSubmitButton) DrawRectangleLines((int)submitButton.x, (int)submitButton.y, (int)submitButton.width, (int)submitButton.height, RED);
 		else DrawRectangleLines((int)submitButton.x, (int)submitButton.y, (int)submitButton.width, (int)submitButton.height, DARKGRAY);
 		DrawTextEx(GetFontDefault(), "Submit", { submitButton.x + 12, submitButton.y + 8 }, 10, 5, MAROON);
+
+		DrawRectangleRec(textBoxVelocity, LIGHTGRAY);
+		if (mouseOnTextVelocity) DrawRectangleLines((int)textBoxVelocity.x, (int)textBoxVelocity.y, (int)textBoxVelocity.width, (int)textBoxVelocity.height, RED);
+		else DrawRectangleLines((int)textBoxVelocity.x, (int)textBoxVelocity.y, (int)textBoxVelocity.width, (int)textBoxVelocity.height, DARKGRAY);
+		DrawTextEx(GetFontDefault(), nameVelocity, { textBoxVelocity.x + 5, textBoxVelocity.y + 8 }, 20, 5, MAROON);
 
 		EndDrawing();
 	}
