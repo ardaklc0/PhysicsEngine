@@ -59,3 +59,24 @@ void CustomRaylib::PlotDistanceRuler(float screenWidth, float screenHeight) {
 
 	}
 }
+
+void CustomRaylib::PlotDistanceRulerProjectile(float screenWidth, float screenHeight) {
+	for (int i = 800; i > 0; i -= 60)
+	{
+		DrawLine(50, i, 40, i, WHITE);
+		DrawLineEx({ 50, 0 }, {50, screenHeight }, 2, WHITE);
+		DrawLineEx({ 0, screenHeight }, { screenWidth, screenHeight }, 2, WHITE);
+		int index = (800 - i) / 6;
+		char str[10];
+		sprintf_s(str, "%d m", index);
+		DrawText(str, 15, i - 15, 10, WHITE);
+	}
+	for (int i = 60; i < 1000; i += 60) {
+		// Vertical ruler
+		DrawLine(50 + i, 800, 50 + i, 790, WHITE);
+		int index = i / 6;
+		char str[10];
+		sprintf_s(str, "%d m", index);
+		DrawText(str, 50 + i + 10, 785, 10, WHITE);
+	}
+}
