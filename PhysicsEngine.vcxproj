@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClCompile Include="euler_method.cpp" />
     <ClCompile Include="euler_method_multi_variable.cpp" />
+    <ClCompile Include="free_fall.cpp" />
     <ClCompile Include="milk_bottle_f_ma.cpp" />
     <ClCompile Include="net_force_calculator.cpp" />
     <ClCompile Include="newton_differentiation.cpp" />
