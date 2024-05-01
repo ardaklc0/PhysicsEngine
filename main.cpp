@@ -31,8 +31,8 @@ float projectileYVelocity(float t, float vy) {
 double startTimeProjectile = GetTime();
 float initialYPositionProjectile = 0;
 float initialXPositionProjectile = 0;
-float initialAngle = 50;
-float initialVelocityProjectile = 40;
+float initialAngle = 30;
+float initialVelocityProjectile = 20;
 double elapsedTimeProjectile;
 double currentTimeProjectile;
 float timeDeltaProjectile;
@@ -41,6 +41,8 @@ float initialMeterXProjectile;
 char currentPositionProjectile[10];
 char elapsedTimeStrProjectile[10];
 char lastTimeProjectile[10];
+char currentAngleProjectile[10];
+float currentAngleProjectileFloat;
 
 
 int counter;
@@ -49,6 +51,7 @@ vector<float> resultXProjectile;
 vector<float> resultYProjectile;
 vector<float> timeListProjectile;
 vector<pair<float, Vector2D>> resultListProjectile;
+vector<char*> angleListProjectile;
 
 int main() {
 	const int screenWidth = 1000;
@@ -65,11 +68,14 @@ int main() {
 		float y = projectileY(t, initialXPositionProjectile, xAngle);
 		float vx = projectileXVelocity(t, yAngle);
 		float vy = projectileYVelocity(t, xAngle);
+		currentAngleProjectileFloat = atan2(vx, vy) * RAD2DEG;
+		snprintf(currentAngleProjectile, 10, "%.2f", currentAngleProjectileFloat);
 		float v = sqrt(vx * vx + vy * vy);
-		cout << "t: " << t << " " << "x: " << x << " y: " << y << " " << "vx: " << vx << " vy: " << vy << " v: " << v << endl;
+		cout << "t: " << t << " " << "x: " << x << " y: " << y << " " << "vx: " << vx << " vy: " << vy << " v: " << v << " angle: " << currentAngleProjectile << endl;
 		resultXProjectile.push_back(x);
 		resultYProjectile.push_back(y);
 		timeListProjectile.push_back(t);
+		angleListProjectile.push_back(currentAngleProjectile);
 		resultListProjectile.push_back(make_pair(t, Vector2D(x, y)));
 		if (y < 0) {
 			break;
@@ -90,7 +96,8 @@ int main() {
 
 		currentTimeProjectile = GetTime();
 		elapsedTimeProjectile = currentTimeProjectile - startTimeProjectile;
-		snprintf(elapsedTimeStrProjectile, 10, "%f", elapsedTimeProjectile);
+		snprintf(elapsedTimeStrProjectile, 10, "%.2f", elapsedTimeProjectile);
+
 		
 		if (elapsedTimeProjectile < timeDeltaProjectile) {
 			counter = static_cast<int>(elapsedTimeProjectile * resultSize / timeDeltaProjectile); // Calculate index based on elapsed time
@@ -98,7 +105,7 @@ int main() {
 			initialMeterXProjectile = resultXProjectile[counter] / 10;
 
 			// Elapsed Time Visualization
-			DrawCircle(initialMeterXProjectile * 60, screenHeight - initialMeterYProjectile * 60, 10, RED);
+			DrawCircle(60 + initialMeterXProjectile * 60, screenHeight - initialMeterYProjectile * 60, 10, RED);
 			DrawText("Elapsed Time: ", screenWidth - 240, 20, 18, RED);
 			DrawText(elapsedTimeStrProjectile, screenWidth - 85, 20, 18, RED);
 			DrawText("s", screenWidth - 30, 20, 18, RED);
@@ -108,6 +115,12 @@ int main() {
 			DrawText("Current Position: ", screenWidth - 240, 40, 18, RED);
 			DrawText(currentPositionProjectile, screenWidth - 85, 40, 18, RED);
 			DrawText("m", screenWidth - 30, 40, 18, RED);
+
+			// Angle Visualization
+			DrawText("Angle: ", screenWidth - 240, 60, 18, RED);
+			DrawText(angleListProjectile[counter], screenWidth - 85, 60, 18, RED);
+			DrawText("deg", screenWidth - 30, 60, 18, RED);
+
 		}
 
 		if (elapsedTimeProjectile >= timeDeltaProjectile) {
