@@ -31,8 +31,8 @@ float projectileYVelocity(float t, float vy) {
 double startTimeProjectile = GetTime();
 float initialYPositionProjectile = 0;
 float initialXPositionProjectile = 0;
-float initialAngle = 30;
-float initialVelocityProjectile = 20;
+float initialAngle = 60;
+float initialVelocityProjectile = 30;
 double elapsedTimeProjectile;
 double currentTimeProjectile;
 float timeDeltaProjectile;
