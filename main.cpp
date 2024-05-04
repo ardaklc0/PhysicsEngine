@@ -12,25 +12,7 @@
 using namespace std;
 
 
-
-
-
-double startTimeProjectile = GetTime();
-float initialYPositionProjectile = 0;
-float initialXPositionProjectile = 0;
-float initialAngle = 30;
-float initialVelocityProjectile = 20;
-double elapsedTimeProjectile;
-double currentTimeProjectile;
-float timeDeltaProjectile;
-float initialMeterYProjectile;
-float initialMeterXProjectile;
-char currentPositionProjectile[10];
-char elapsedTimeStrProjectile[10];
-char lastTimeProjectile[10];
-char currentAngleProjectile[10];
-float currentAngleProjectileFloat;
-
+int main(){
 	float m1 = 1; // Mass of the first pendulum
 	float m2 = 1; // Mass of the second pendulum
 
