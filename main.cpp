@@ -11,28 +11,21 @@
 #include <vector>
 using namespace std;
 
+#ifndef GRAVITY
+#define GRAVITY 9.81
+#endif
+
+float lengthOfPendulum = 1; // meters
+
+float secondDifferential(float t, float y, float y_prime) {
+	return -GRAVITY / lengthOfPendulum * y;
+}
 
 int main(){
-	float m1 = 1; // Mass of the first pendulum
-	float m2 = 1; // Mass of the second pendulum
+	SecondOrderEulerMethod secondOrderEulerMethod(0, 0, 30, 0.01);
+	vector<std::pair<float, Vector2D>> result = secondOrderEulerMethod.solve(1000, secondDifferential);
 
-	float g = 9.81; // Acceleration due to gravity
 
-    float t = 0; // Time
-	float dt = 0.01; // Time step
 
-	float theta1 = 80.5 * PI / 180; // Initial angle of the first pendulum
-	float theta2 = 0 * PI / 180; // Initial angle of the second pendulum
-
-	float theta1_dot = 0; // Initial angular velocity of the first pendulum
-	float theta2_dot = 0; // Initial angular velocity of the second pendulum
-
-	while (!WindowShouldClose())
-	{
-		BeginDrawing();
-
-		EndDrawing();
-	}
-	CloseWindow();
 	return 0;
 }
