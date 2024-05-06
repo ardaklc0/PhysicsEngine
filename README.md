@@ -1,3 +1,6 @@
+Some of the ODEsolvers: RK4-5, Euler Method, Dopri
+
+
 **Vector Addition Simulation/Net Force Simulation**
 This calculator adds up to 7 vectors 
 
